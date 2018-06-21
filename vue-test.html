@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id ='app'>
+        {{message}}
+    </div>
+    <div id ='app-2'>
+        <span v-bind:title= 'message'>Hover over me!</span>
+    </div>
+    <div id = 'app-3'>
+        <span v-if='seen'>I'm seen </span>
+    </div>
+    <div id ='app-4'>
+        <ol>
+        <li v-for='todo in todos'>
+            {{todo.text}}
+        </li>
+        </ol>
+    </div>
+    <div id ='app-5'>
+        <p>{{message}}</p>
+        <button v-on:click='reverseMessage'>Change to Blue</button>
+    </div>
+    <div id ='app-6'>
+        <p>{{message}}</p>
+        <input v-model='message'>
+    </div>
+
+    <div id = 'app-7'>
+        <ol>
+            <todo-item
+                v-for='item in songList'
+                v-bind:todo='item'
+                v-bind:key='item.id'>
+            </todo-item>
+        </ol>
+    </div>
+
+
+</body>
+<script>
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{todo.text}}</li>'
+    })
+
+    const app7 = new Vue ({
+        el: '#app-7',
+        data: {
+            songList: [
+            {id: 0, text: 'Paris in the Rain'},
+            {id: 1, text: 'Creature Comfort'},
+            {id: 2, text: 'Money for Nothing'}
+        ]}
+    })
+
+    const app = new Vue ({
+        el: '#app',
+        data: {
+            message: 'Hello!'
+        }
+    })
+
+    const app2 =  new Vue ({
+        el: '#app-2',
+        data: {
+            message: `You loaded this page on ${new Date().toLocaleString()}`
+        }
+    })
+
+    const app3 = new Vue ({
+        el: '#app-3',
+        data: {
+            seen: true
+        }
+    })
+
+    const app4 = new Vue ({
+        el: '#app-4',
+        data: {
+            todos: [
+                {text: 'Do stuff'},
+                {text: 'Make todo list'},
+                {text: 'Learn vue'}
+            ]
+        }
+    })
+    
+    const app5 = new Vue ({
+        el: '#app-5',
+        data: {
+            message: 'Change me to blue'
+        },
+        methods: {
+            reverseMessage: function () {
+                let elem = document.getElementById('app-5');
+                elem.setAttribute("style", "color:blue; font-size: 2em");
+                
+            }
+        }
+    })
+
+    const app6 = new Vue ({
+        el: '#app-6',
+        data: {
+            message: 'Howdy!'
+        }
+    })
+</script>
+</html>
