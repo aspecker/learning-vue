@@ -8,8 +8,37 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+
+    <div id = 'app'>
+        <p>{{counter}}</p>
+        <button v-on:click='increment'> Increment </button>
+        <button v-on:click='incValue'> Increase Value </button>
+    </div>
+
     
 <script>
+
+    const data = {
+        counter: 0,
+        amount: 1    }
+
+    const vm = new Vue({
+        el: '#app',
+        data: data,
+        methods: {
+            increment: function () {
+                data.counter += data.amount;
+            },
+            incValue: function () {
+                data.amount ++;
+            }
+        }
+
+    })
+
+    vm.$watch('counter', function (newValue, oldValue){
+        console.log(`old value: ${oldValue} new value: ${newValue}`)
+    })
 
 </script>
 </body>
