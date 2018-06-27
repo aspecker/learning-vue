@@ -36,9 +36,10 @@
 
     })
 
-    vm.$watch('counter', function (newValue, oldValue){
-        console.log(`old value: ${oldValue} new value: ${newValue}`)
+    vm.$watch('counter',  (newValue, oldValue)=>{
+        console.log('old value', oldValue, "new value", newValue)
     })
+    
 
 </script>
 </body>
